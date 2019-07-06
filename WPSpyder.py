@@ -78,6 +78,7 @@ class Spider():
         if not os.path.exists(filePath):
             os.makedirs(filePath)
 
+    #get page number
     def get_pageNum(self):
         total = ""
         url = ("https://alpha.wallhaven.cc/search?q={}&categories=111&purity=100&sorting=relevance&order=desc").format(keyWord1)
@@ -91,6 +92,7 @@ class Spider():
         totalPagenum = int(total)
         return totalPagenum
 
+    #mian function
     def main_fuction(self):
         self.creat_File()
         count = self.get_pageNum()
@@ -126,6 +128,7 @@ class Spider():
         pbar.finish()
         end = time.time()
 
+    #link to the target website
     def getLinks(self,number):
         url = ("https://alpha.wallhaven.cc/search?q={}&categories=111&purity=100&sorting=relevance&order=desc&page={}").format(keyWord1,number)
         try:
@@ -136,6 +139,7 @@ class Spider():
             print(repr(e))
         return pic_Linklist
 
+    #download the pictures from web
     def download(self,url,count):
         string = url.strip('/thumbTags').strip('https://alpha.wallhaven.cc/wallpaper/')
         html = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-' + string + '.jpg'
